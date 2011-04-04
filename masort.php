@@ -1,5 +1,37 @@
 <?php
 
+/**
+ * Sort an array of associative arrays by one or more keys in the data.
+ * Do some rudimentary detection of "type" to get correct numeric/lexical
+ * sort automatically.
+ *
+ * Example usage:
+ *
+ * $data = array(
+ *     array('flavor' => 'lemon',                                                                              *           'food' => 'chicken'),
+ *     array('flavor' => 'orange',
+ *           'food' => 'duck'),
+ *     array('flavor' => 'lemon',
+ *           'food' => 'sherbert'),
+ *     array('flavor' => 'orange',
+ *           'food' => 'juice')
+ * );
+ * masort($arr, 'flavor_a,food_d'); # "_a" for ascending, "_d" for descending
+ *
+ * $data is now:
+ *
+ * {
+ *   { 'flavor': 'lemon',
+ *     'food'  : 'sherbert' },
+ *   { 'flavor': 'lemon',
+ *     'food'  : 'chicken' },
+ *   { 'flavor': 'orange',
+ *     'food'  : 'juice' },
+ *   { 'flavor': 'orange',
+ *     'food'  : 'duck' }
+ * }
+ */
+
 // Expects Multidimensional associative array for the first param.
 // Second param is "field_a,field_d,field_a" as first param - _a for sort
 // ascending, _d for sort descending.
