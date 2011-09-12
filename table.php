@@ -37,7 +37,7 @@ function input_form($id) {
     ?>
     <form method="POST">
         <input type="hidden" name="cmd" value="add" />
-        <input type="hidden" name="id" value="<?php echo h($id); ?/>" />
+        <input type="hidden" name="id" value="<?php echo h($id); ?>" />
         <?php echo $instructions; ?>
         <textarea name="results"></textarea>
         <p><input type="submit" value="Add" /></p>
