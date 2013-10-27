@@ -5,7 +5,7 @@ require_once('masort.php');
 function main() {
     $s = "";
     $cmd = (isset($_REQUEST['cmd']) ? $_REQUEST['cmd'] : null);
-    $id = (isset($_GET['id']) ? $_GET['id'] : null);
+    $id = (isset($_GET['id']) ? (int) $_GET['id'] : null);
     $title = "";
     if ($cmd === 'add') {
         list($id, $display) = add($id, $_POST['results']);
