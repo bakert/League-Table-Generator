@@ -43,7 +43,7 @@ function input_form($id) {
         <p><input type="submit" value="Add" /></p>
     </form>
     <?php
-    echo ($id ? "" : "<p>Example: <pre>Liverpool 1 - 0 Man Utd\nEverton 2 - 0 Aston Villa\nLiverpool 3 - 1 Everton\nAston Villa 0 - 0 Man Utd</pre>");
+    echo ($id ? "" : "<p>Example: <pre>Liverpool 1 - 0 Man Utd\nEverton 2 - 0 Aston Villa\nLiverpool 3 - 1 Everton\nAston Villa 0 - 0 Man Utd</pre></p>");
     return ob_get_clean();
 }
 
@@ -78,8 +78,8 @@ function table($id) {
         extract(hmap($team));
         $s .= "<tr><td>$name</td><td class=\"n\">$played</td><td class=\"n\">$won</td><td class=\"n\">$drawn</td><td class=\"n\">$lost</td><td class=\"n\">$for</td><td class=\"n\">$against</td><td class=\"n\">$points</td></tr>";
     }
-    $s .= "</tbody>";
-    $s .= '<p><a href="' . self_ref_url() . '?id=' . h($id) . '&txt=1">Text version</a></p>';
+    $s .= "</tbody></table>";
+    $s .= '<p><a href="' . self_ref_url() . '?id=' . h($id) . '&amp;txt=1">Text version</a></p>';
     return $s;
 }
 
@@ -204,23 +204,23 @@ function generate_id() {
 function head($title, $id) {
     ob_start();
     ?>
-    < !DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+    <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
     <html>
         <head>
             <title>League Table Generator<?php if ($title) { echo " - $title"; } ?></title>
             <link rel="stylesheet" href="blueprint/screen.css" type="text/css" media="screen, projection">
-            </link><link rel="stylesheet" href="blueprint/print.css" type="text/css" media="print">
+            <link rel="stylesheet" href="blueprint/print.css" type="text/css" media="print">
             <!--[if lt IE 8]>
-            </link><link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection">
-            < ![endif]-->
+            <link rel="stylesheet" href="css/blueprint/ie.css" type="text/css" media="screen, projection">
+            <![endif]-->
             <link rel="stylesheet" type="text/css" href="table.css" />
-        </link></head>
+        </head>
         <body>
             <div class="container">
                 <div class="span-10 last">
                     <h1>Table Generator</h1>
                     <p>This program is part of <a href="/2009/09/league-table-generator">bluebones.net</a></p>
-                    <?php if ($title) { echo "<h2>$title"; } ?>
+                    <?php if ($title) { echo "<h2>$title</h2>"; } ?>
                     <?php if ($id) { ?>
                         <p><a href="<?php echo h($_SERVER['SCRIPT_NAME']); ?>">New Table</a></p>
                     <?php } ?>
@@ -283,27 +283,3 @@ function db($sql) {
 
 main();
 
-/*
-Copyright (c) 2009 Thomas David Baker
-
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-*/
