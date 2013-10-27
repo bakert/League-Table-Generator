@@ -270,14 +270,13 @@ function hmap($a) {
 
 // Exec query on db $id creating it if necessary and returning array of results if a SELECT.
 function db($sql) {
-    $db = sqlite_open('results');
+    $db = new PDO('sqlite:results.sqlite3');
     // Create table if it doesn't exist.  Ignore error if it does.
-    @sqlite_exec($db, 'CREATE TABLE result (home VARCHAR(255), away VARCHAR(255), for INT, against INT, table_id INT)');
+    @$db->exec('CREATE TABLE result (home VARCHAR(255), away VARCHAR(255), for INT, against INT, table_id INT)');
     if (strpos($sql, "SELECT") === 0) {
-        $q = sqlite_query($db, $sql);
-        return sqlite_fetch_all($q, SQLITE_ASSOC);
+        return $db->query($sql)->fetchAll();
     } else {
-        return sqlite_exec($db, $sql);
+        return $db->exec($sql);
     }
 }
 
